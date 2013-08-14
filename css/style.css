@@ -1,0 +1,18 @@
+.body{
+    padding-top: 15px;
+}
+.addUser{
+    margin-top: 20px;
+}
+.main #form input{
+    width: 170px;
+}
+.main{
+margin-top: 20px;
+}
+.main #form .btn{
+    margin-top: -13px;
+}
+#myModal{
+   display: none;
+}

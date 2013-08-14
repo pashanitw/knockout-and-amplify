@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container addUser">
+<a class="btn btn-primary" data-bind="click:add">Add Newuser</a>
+</div>
+<div class="container main">
+<div class="row" id="form" data-bind="visible:isAddVisible">
+    <form data-bind="submit:$root.save">
+        <div data-bind="with:newUser">
+  <input type="email"  required placeholder=" email" data-bind="value:email">
+ <input type="text" placeholder="firstname" required data-bind="value:fname">
+ <input type="text" placeholder="secondname" data-bind="value:lname">
+ <input  placeholder="phone Number" type="number" maxlength="10" data-bind="value:phno">
+ <button type="submit" class="btn">Save</button>
+ <button class="btn" data-bind="click:$root.cancel">Cancel</button>
+        </div>
+    </form>
+
+</div>
+   <table  class="table">
+       <thead>
+       <tr>
+           <th>SNo</th>
+           <th>Email</th>
+           <th>FullName</th>
+           <th>Phone Number</th>
+           <th></th>
+       </tr>
+       </thead>
+       <tbody data-bind="foreach:allUsers">
+       <tr>
+           <td data-bind="text:userID">1</td>
+           <td data-bind="text:email"></td>
+           <td data-bind="text:fullName"></td>
+           <td data-bind="text:phno"></td>
+           <td> <a class="btn" data-toggle="modal" data-target="#myModal" data-bind="click:$root.setEditContext">Edit</a>
+               <a class="btn btn-primary" data-bind="click:$root.deleteRecord">Delete</a>
+               </td>
+       </tr>
+
+       </tbody>
+   </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" data-bind="with:$root.editRecord">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-bind="click:$root.cancelEdit">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body" >
+                <label>Email</label>
+                <input type="email" required placeholder="email" data-bind="value:email,valueUpdate: 'afterkeydown'">
+                <label>First Name</label>
+                <input type="text" placeholder="firstname" required data-bind="value:fname,valueUpdate: 'afterkeydown'">
+                <label>Second Name</label>
+                <input type="text" placeholder="secondname" data-bind="value:lname,valueUpdate: 'afterkeydown'">
+                <label>Phone Number</label>
+                <input  placeholder="phone Number" type="number" data-bind="value:phno,valueUpdate: 'afterkeydown'">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="enable:dirtyFlag().isDirty(),click:$root.saveEdit">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:$root.cancelEdit">Cancel</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<script src="js/jquery-1.10.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/knockout-2.2.1.debug.js"></script>
+<script src="js/knockout.dirtyFlag.js"></script>
+<script src="js/amplify.js"></script>
+<script src="js/toastr.js"></script>
+<script src="model/user.js"></script>
+<script src="model/viewmodel.js"></script>
+</body>
+
+</html>
